@@ -16,9 +16,9 @@
           <aside class="right">
           {% if user.is_authenticated %}
           <p class="">Hello, {{ user.username }}!</p>
-          <a href="#" class="">Logout</a>
+          <a href="{% url 'auth_logout' %}" class="">Logout</a>
           {% else %}
-          <a href="#" class="">Login</a>
+          <a href="{% url 'auth_login' %}" class="">Login</a>
           {% endif %}
           </aside>
           <br>
