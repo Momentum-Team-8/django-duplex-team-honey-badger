@@ -4,16 +4,26 @@
 
 <h1 class="page_title">All Decks</h1>
 
-{% for deck in decks %}
-<div class="container"> 
-        <div class="deck_title">
-                <p class="deck_title"><a href="{{deck.deck_URL}}" target="_blank">{{deck.title}}</a></p> 
-                    
-                </div>
-        
-        </div>
 
-    {% endfor %}
-</div> 
-   
+{% for deck in decks %}
+<div class="card">
+        <header class="card-header">
+          <p class="card-header-title"><a href="">
+           {{deck.title}}</a>
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            Deck created at:
+            <br>
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item">Edit</a>
+          <a href="#" class="card-footer-item">Delete</a>
+        </footer>
+</div>
+{% endfor %}
+
 {% endblock %}
