@@ -10,3 +10,9 @@ def homepage(request):
 @login_required
 def profile_page(request):
     return render(request, "flashcards/profile_page.html")
+
+@login_required
+def list_deck(request):
+    decks = Deck.objects.all()
+    return render(request, "flashcards/list_deck.html",
+                  {"decks": decks})

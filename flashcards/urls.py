@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.homepage, name="home"),
     path('accounts/', include('registration.backends.default.urls')),
     path('profile/', views.profile_page, name='profile_page'),
+    path('decklist/', views.list_deck, name='list_deck',)
 ]
