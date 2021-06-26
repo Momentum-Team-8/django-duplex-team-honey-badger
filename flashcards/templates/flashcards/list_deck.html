@@ -6,7 +6,8 @@
 
 
 {% for deck in decks %}
-<div class="card">
+<div class="parent is-flex-wrap-wrap columns">
+<div class="card is-flex-wrap-wrap column is-half is-offset-one-quarter column">
         <header class="card-header">
           <p class="card-header-title"><a href="">
            {{deck.title}}</a>
@@ -31,6 +32,7 @@
               </svg>
               Delete</a>
         </footer>
+</div>
 </div>
 {% endfor %}
 
