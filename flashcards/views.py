@@ -1,3 +1,4 @@
+from flashcards.forms import CardForm
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Deck, Card, User
 from django.utils import timezone
@@ -16,3 +17,42 @@ def list_deck(request):
     decks = Deck.objects.all()
     return render(request, "flashcards/list_deck.html",
                   {"decks": decks})
+
+
+def list_card(request):
+    cards = Card.object.all()
+    return render(request, "flashcards/card.html", {"cards": cards})
+
+
+def add_card(request):
+    if request.method == 'GET':
+        form = CardForm()
+    else:
+        form = CardForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_deck')
+
+    return render(request, "flashcards/add_card.html", {"form": form})
+
+
+def edit_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'GET':
+        form = CardForm(instance=card)
+    else:
+        form = CardForm(data=request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_deck')
+
+    return render(request, "flashcards/edit_card.html", {"form": form, "card": card})
+
+
+def delete_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'POST':
+        card.delete()
+        return redirect(to='list_albums')
+
+    return render(request, "flashcards/delete_card.html", {"card": card})
