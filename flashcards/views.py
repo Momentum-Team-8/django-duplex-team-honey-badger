@@ -47,13 +47,5 @@ def edit_deck(request, pk):
 @login_required
 def delete_deck(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
-    if request.method == 'POST':
-        form = DeckForm(request.POST, instance=deck)
-        if form.is_valid():
-            deck = form.save(commit=False)
-            deck.created_date = timezone.now()
-            deck.delete()
-            return redirect('list_deck')
-    else:
-        form = DeckForm()
-    return render(request, 'flashcards/delete_deck.html', {'form': form})
+    deck.delete()
+    return redirect('list_deck')
