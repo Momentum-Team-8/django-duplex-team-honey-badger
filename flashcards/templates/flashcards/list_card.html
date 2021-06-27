@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for card in deck %}
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <p>Card flip test front</p>
+      </div>
+      <div class="flip-card-back">
+        <p>card flip test back</p>
+        <p>Did you guess correctly?</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
