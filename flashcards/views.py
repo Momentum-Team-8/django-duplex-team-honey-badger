@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 from flashcards.forms import CardForm
 from django.shortcuts import render, get_object_or_404, redirect
-=======
-from django.shortcuts import render, redirect, get_object_or_404
->>>>>>> main
 from .models import Deck, Card, User
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -22,11 +18,10 @@ def list_deck(request):
     return render(request, "flashcards/list_deck.html",
                   {"decks": decks})
 
-<<<<<<< HEAD
 
-def list_card(request):
-    cards = Card.object.all()
-    return render(request, "flashcards/card.html", {"cards": cards})
+def list_card(request, pk):
+    cards = Card.objects.all()
+    return render(request, "flashcards/list_card.html", {"cards": cards})
 
 
 def add_card(request):
@@ -61,7 +56,6 @@ def delete_card(request, pk):
         return redirect(to='list_albums')
 
     return render(request, "flashcards/delete_card.html", {"card": card})
-=======
 @login_required
 def add_deck(request):
     if request.method == 'POST':
@@ -95,4 +89,3 @@ def delete_deck(request, pk):
     if request.method == 'POST':
         decks.delete()
         return redirect('list_deck')
->>>>>>> main

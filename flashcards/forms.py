@@ -1,25 +1,20 @@
-<<<<<<< HEAD
-from django.forms import ModelForm
-from .models import Card
+from django import forms
+from .models import Card, Deck
 
 
-class CardForm(ModelForm):
-    
+class DeckForm(forms.ModelForm):
+    class Meta:
+        model = Deck
+        fields = [
+            'title',
+        ]
+
+
+class CardForm(forms.ModelForm):
     class Meta:
         model = Card
         fields = [
             'front_prompt',
             'back_answer',
             'deck',
-=======
-from django import forms
-
-from .models import Deck, Card
-
-class DeckForm(forms.ModelForm):
-    class Meta:
-        model = Deck
-        fields = [
-            'title', 
->>>>>>> main
         ]
