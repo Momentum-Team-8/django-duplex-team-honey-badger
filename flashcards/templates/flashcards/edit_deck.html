@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Edit Album</h1>
+<h1>Edit Deck</h1>
 
 <div>
-  <form action="{% url 'edit_deck' pk=deck.pk %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div>
-      <button type="submit">Edit Deck</button>
-    </div>
-  </form>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save">Save</button>
+    </form>
 </div>
 {% endblock %}
