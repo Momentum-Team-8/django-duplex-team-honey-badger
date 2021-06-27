@@ -14,7 +14,6 @@ class User(AbstractUser):
 
 class Deck(models.Model):
     title = models.CharField(max_length=200)
-    cards = models.ManyToManyField("Card", related_name="decks")
     created_date = models.DateTimeField(default=timezone.now)
     
     def __repr__(self):
@@ -26,7 +25,7 @@ class Deck(models.Model):
 class Card(models.Model):
     front_prompt = models.CharField(max_length=600)
     back_answer = models.CharField(max_length=900)
-    deck = models.CharField(max_length=200)
+    deck = models.ForeignKey(Deck, on_delete=models.CASCADE, related_name="cards")
 
     def __repr__(self):
         return f"<Card prompt={self.front_prompt}>"

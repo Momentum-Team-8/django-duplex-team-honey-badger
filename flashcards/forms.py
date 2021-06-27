@@ -1,10 +1,20 @@
 from django import forms
+from .models import Card, Deck
 
-from .models import Deck, Card
 
 class DeckForm(forms.ModelForm):
     class Meta:
         model = Deck
         fields = [
-            'title', 
+            'title',
+        ]
+
+
+class CardForm(forms.ModelForm):
+    class Meta:
+        model = Card
+        fields = [
+            'front_prompt',
+            'back_answer',
+            'deck',
         ]

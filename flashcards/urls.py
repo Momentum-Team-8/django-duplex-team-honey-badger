@@ -1,3 +1,4 @@
+
 from django import urls
 from django.urls import path, include
 from django.urls.resolvers import URLPattern
@@ -11,4 +12,6 @@ urlpatterns = [
     path('decklist/add/', views.add_deck, name='add_deck'),
     path('decklist/<int:pk>/edit/', views.edit_deck, name='edit_deck'),
     path('decklist/<int:pk>/delete/', views.delete_deck, name='delete_deck'),
+    path('decklist/<int:pk>/list_card', views.list_card, name='list_card'),
+
 ]

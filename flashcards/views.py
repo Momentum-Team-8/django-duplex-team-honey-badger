@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from flashcards.forms import CardForm
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Deck, Card, User
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -17,6 +18,44 @@ def list_deck(request):
     return render(request, "flashcards/list_deck.html",
                   {"decks": decks})
 
+
+def list_card(request, pk):
+    cards = Card.objects.all()
+    return render(request, "flashcards/list_card.html", {"cards": cards})
+
+
+def add_card(request):
+    if request.method == 'GET':
+        form = CardForm()
+    else:
+        form = CardForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_deck')
+
+    return render(request, "flashcards/add_card.html", {"form": form})
+
+
+def edit_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'GET':
+        form = CardForm(instance=card)
+    else:
+        form = CardForm(data=request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list_deck')
+
+    return render(request, "flashcards/edit_card.html", {"form": form, "card": card})
+
+
+def delete_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'POST':
+        card.delete()
+        return redirect(to='list_albums')
+
+    return render(request, "flashcards/delete_card.html", {"card": card})
 @login_required
 def add_deck(request):
     if request.method == 'POST':
