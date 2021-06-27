@@ -32,16 +32,17 @@ def add_deck(request):
 
 @login_required
 def edit_deck(request, pk):
-    decks = get_object_or_404(Deck, pk=pk)
-    if request.method == 'GET':
-        decks = DeckForm(instance=decks)
+    deck = get_object_or_404(Deck, pk=pk)
+    if request.method == 'POST':
+        form = DeckForm(request.POST, instance=deck)
+        if form.is_valid():
+            deck = form.save(commit=False)
+            deck.created_date = timezone.now()
+            deck.save()
+            return redirect('list_deck')
     else:
-        decks = DeckForm(data=request.POST, instance=decks)
-        if decks.is_valid():
-            decks.save()
-            return redirect(to='list_deck')
-
-        return render(request, "flashcards/edit_deck.html", {'decks': decks})
+        form = DeckForm()
+    return render(request, 'flashcards/add_deck.html', {'form': form})
 
 @login_required
 def delete_deck(request, pk):
