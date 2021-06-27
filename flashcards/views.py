@@ -85,7 +85,6 @@ def edit_deck(request, pk):
 
 @login_required
 def delete_deck(request, pk):
-    decks = get_object_or_404(Deck, pk=pk)
-    if request.method == 'POST':
-        decks.delete()
-        return redirect('list_deck')
+    deck = get_object_or_404(Deck, pk=pk)
+    deck.delete()
+    return redirect('list_deck')
