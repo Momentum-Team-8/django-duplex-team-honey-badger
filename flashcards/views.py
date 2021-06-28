@@ -15,7 +15,7 @@ def profile_page(request):
 @login_required
 def list_deck(request):
     decks = Deck.objects.all()
-    return render(request, "flashcards/list_deck.html",{"decks": decks})
+    return render(request, "flashcards/list_deck.html", {"decks": decks})
 
 
 def list_card(request, pk):
@@ -24,16 +24,17 @@ def list_card(request, pk):
     return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck})
 
 
-def add_card(request):
-    if request.method == 'GET':
-        form = CardForm()
-    else:
-        form = CardForm(data=request.POST)
+def add_card(request, pk):
+    if request.method == 'POST':
+        form = CardForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(to='list_deck')
-
-    return render(request, "flashcards/add_card.html", {"form": form})
+            card = form.save(commit=False)
+            card.created_date = timezone.now()
+            card.save()
+            return redirect('list_card', pk=pk)
+    else:
+        form = CardForm()
+    return render(request, 'flashcards/add_card.html', {'form': form})
 
 
 def edit_card(request, pk):
