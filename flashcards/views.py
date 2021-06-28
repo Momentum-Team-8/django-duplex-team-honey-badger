@@ -88,3 +88,5 @@ def delete_deck(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     deck.delete()
     return redirect('list_deck')
+
+
