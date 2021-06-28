@@ -21,7 +21,7 @@ def list_deck(request):
 def list_card(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     cards = deck.cards.all()
-    return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck})
+    return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck, "pk": pk})
 
 
 def add_card(request, pk):
@@ -52,11 +52,10 @@ def edit_card(request, pk):
 
 def delete_card(request, pk):
     card = get_object_or_404(Card, pk=pk)
-    if request.method == 'POST':
-        card.delete()
-        return redirect(to='list_albums')
+    card.delete()
+    return redirect('list_card', pk=card.deck_id)
 
-    return render(request, "flashcards/delete_card.html", {"card": card})
+
 @login_required
 def add_deck(request):
     if request.method == 'POST':
@@ -89,3 +88,5 @@ def delete_deck(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     deck.delete()
     return redirect('list_deck')
+
+
