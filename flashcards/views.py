@@ -52,11 +52,10 @@ def edit_card(request, pk):
 
 def delete_card(request, pk):
     card = get_object_or_404(Card, pk=pk)
-    if request.method == 'POST':
-        card.delete()
-        return redirect(to='list_albums')
+    card.delete()
+    return redirect('list_card', pk=card.deck_id)
 
-    return render(request, "flashcards/delete_card.html", {"card": card})
+
 @login_required
 def add_deck(request):
     if request.method == 'POST':
