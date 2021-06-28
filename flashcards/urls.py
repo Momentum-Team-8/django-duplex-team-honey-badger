@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.homepage, name="home"),
     path('accounts/', include('registration.backends.default.urls')),
     path('profile/', views.profile_page, name='profile_page'),
+    path('<int:pk>/delete_card/', views.delete_card, name='delete_card'),
     path('decklist/', views.list_deck, name='list_deck'),
     path('decklist/add/', views.add_deck, name='add_deck'),
     path('decklist/<int:pk>/edit/', views.edit_deck, name='edit_deck'),
