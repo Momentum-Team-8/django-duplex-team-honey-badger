@@ -21,7 +21,7 @@ def list_deck(request):
 def list_card(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     cards = deck.cards.all()
-    return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck})
+    return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck, "pk": pk})
 
 
 def add_card(request, pk):
@@ -89,3 +89,5 @@ def delete_deck(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     deck.delete()
     return redirect('list_deck')
+
+
