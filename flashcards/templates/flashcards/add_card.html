@@ -6,11 +6,9 @@
 
 
 <div>
-    <form action="{% url 'add_card' %}" method="POST">
-        {% csrf_token %} {{ form.as_p }}
-        <div>
-        <button type="submit">Add Card</button>
-        </div>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save">Save</button>
     </form>
 </div>
 {% endblock %}
