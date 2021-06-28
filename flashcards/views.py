@@ -20,8 +20,9 @@ def list_deck(request):
 
 
 def list_card(request, pk):
-    cards = Card.objects.all()
-    return render(request, "flashcards/list_card.html", {"cards": cards})
+    deck = get_object_or_404(Deck, pk=pk)
+    cards = deck.cards.all()
+    return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck})
 
 
 def add_card(request):

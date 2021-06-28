@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for card in cards %}
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <p>{{ card.front_prompt }}</p>
+      </div>
+      <div class="flip-card-back">
+        <p>{{ card.back_answer }}</p>
+        <br>
+        <p>Did you guess correctly?</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
