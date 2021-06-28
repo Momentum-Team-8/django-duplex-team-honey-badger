@@ -39,15 +39,16 @@ def add_card(request, pk):
 
 def edit_card(request, pk):
     card = get_object_or_404(Card, pk=pk)
-    if request.method == 'GET':
-        form = CardForm(instance=card)
-    else:
-        form = CardForm(data=request.POST, instance=card)
+    if request.method == 'POST':
+        form = CardForm(request.POST, instance=card)
         if form.is_valid():
-            form.save()
-            return redirect(to='list_deck')
-
-    return render(request, "flashcards/edit_card.html", {"form": form, "card": card})
+            card = form.save(commit=False)
+            card.created_date = timezone.now()
+            card.save()
+            return redirect('list_card', pk=card.deck_id)
+    else:
+        form = CardForm()
+    return render(request, 'flashcards/edit_card.html', {'form': form, 'card': card})
 
 
 def delete_card(request, pk):
