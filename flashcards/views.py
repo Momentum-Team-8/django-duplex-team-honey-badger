@@ -15,8 +15,7 @@ def profile_page(request):
 @login_required
 def list_deck(request):
     decks = Deck.objects.all()
-    return render(request, "flashcards/list_deck.html",
-                  {"decks": decks})
+    return render(request, "flashcards/list_deck.html",{"decks": decks})
 
 
 def list_card(request, pk):
