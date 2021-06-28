@@ -14,7 +14,7 @@
 <div class="parent is-flex-wrap-wrap columns">
 <div class="card is-flex-wrap-wrap column is-half is-offset-one-quarter column">
         <header class="card-header">
-          <p class="card-header-title"><a href="">
+          <p class="card-header-title"><a href="{% url 'list_card' pk=deck.pk %}">
            {{deck.title}}</a>
           </p>
         </header>
