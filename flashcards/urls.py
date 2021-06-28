@@ -13,5 +13,5 @@ urlpatterns = [
     path('decklist/<int:pk>/edit/', views.edit_deck, name='edit_deck'),
     path('decklist/<int:pk>/delete/', views.delete_deck, name='delete_deck'),
     path('decklist/<int:pk>/list_card', views.list_card, name='list_card'),
-
+    path('decklist/<int:pk>/list_card/add_card', views.add_card, name='add_card'),
 ]
