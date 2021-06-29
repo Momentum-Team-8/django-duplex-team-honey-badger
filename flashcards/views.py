@@ -5,6 +5,7 @@ from .models import Deck, Card, User
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .forms import DeckForm
+from django.http import JsonResponse
 # Create your views here.
 def homepage(request):
     return render(request, "flashcards/homepage.html")
@@ -21,7 +22,7 @@ def list_deck(request):
 
 def list_card(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
-    cards = deck.cards.order_by('?')
+    cards = deck.cards.filter(marked_as_right=False).order_by('?')
     return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck, "pk": pk})
 
 
@@ -92,7 +93,8 @@ def delete_deck(request, pk):
     return redirect('list_deck')
 
 
-def marked_right(request, card_pk):
-    card = get_object_or_404(Card, pk=card_pk)
-    marked_as_right = card.objects.filter(BooleanField=False)
-    if marked_as_right.object = False:
+def mark_correct(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    card.marked_as_right=True
+    card.save()
+    return JsonResponse({}, status=200)
