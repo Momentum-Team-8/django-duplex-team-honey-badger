@@ -42,3 +42,10 @@
     color: white;
     transform: rotateY(180deg);
   }
+
+  .left {
+    float: left;
+}
+.right {
+    float: right;
+}
