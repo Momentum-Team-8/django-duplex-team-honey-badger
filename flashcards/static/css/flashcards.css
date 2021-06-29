@@ -32,7 +32,7 @@
   
 
   .flip-card-front {
-    background-image: url("flashcards/templates/flashcards/index/blank.jpeg");
+    background-image: url("flashcards/templates/index/blank.jpeg");
     color: black;
   }
   
