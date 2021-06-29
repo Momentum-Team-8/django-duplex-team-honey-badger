@@ -26,6 +26,7 @@ class Card(models.Model):
     front_prompt = models.CharField(max_length=600)
     back_answer = models.CharField(max_length=900)
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE, related_name="cards")
+    marked_as_right = models.BooleanField(default=False)
 
     def __repr__(self):
         return f"<Card prompt={self.front_prompt}>"
