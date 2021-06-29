@@ -1,3 +1,4 @@
+from django.db.models.fields import BooleanField
 from flashcards.forms import CardForm
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Deck, Card, User
@@ -91,3 +92,8 @@ def delete_deck(request, pk):
     return redirect('list_deck')
 
 
+def marked_right(request, card_pk):
+    card = get_object_or_404(Card, pk=card_pk)
+    marked_as_right = card.objects.filter(BooleanField=False)
+    if card.objects.filter(card.deck_id)
+        if card.objects.filter
