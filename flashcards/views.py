@@ -20,7 +20,7 @@ def list_deck(request):
 
 def list_card(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
-    cards = deck.cards.all()
+    cards = deck.cards.order_by('?')
     return render(request, "flashcards/list_card.html", {"cards": cards, "deck": deck, "pk": pk})
 
 
