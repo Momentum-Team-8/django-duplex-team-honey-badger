@@ -95,5 +95,4 @@ def delete_deck(request, pk):
 def marked_right(request, card_pk):
     card = get_object_or_404(Card, pk=card_pk)
     marked_as_right = card.objects.filter(BooleanField=False)
-    if card.objects.filter(card.deck_id)
-        if card.objects.filter
+    if marked_as_right.object = False:
