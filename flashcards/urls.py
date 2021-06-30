@@ -19,7 +19,11 @@ urlpatterns = [
     path('decklist/<int:pk>/delete/', views.delete_deck, name='delete_deck'),
     path('decklist/<int:pk>/list_card', views.list_card, name='list_card'),
     path('decklist/<int:pk>/list_card/add_card', views.add_card, name='add_card'),
+<<<<<<< HEAD
     path('decklist/<int:deck_pk>/list_card/<int:card_pk>/edit_card', views.edit_card, name='edit_card'),
     path('decklist/<int:pk>/list_card/<int:pk>/delete_card', views.delete_card, name='delete_card'),
 
+=======
+    path('card/<int:pk>/mark_correct', views.mark_correct, name='mark_correct')
+>>>>>>> main
 ]
