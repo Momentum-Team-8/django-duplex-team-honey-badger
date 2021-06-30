@@ -95,6 +95,20 @@ def delete_deck(request, pk):
 
 def mark_correct(request, pk):
     card = get_object_or_404(Card, pk=pk)
+    if marked_as_right.filter(id=card.id).exists():
+        correct = True
+    else
+        correct = False
+    card.save()
+    
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"correct": correct}, status=200)
+
+
+def mark_correct(request, pk):
+    card = get_object_or_404(Card, pk=pk)
     card.marked_as_right=True
     card.save()
     return JsonResponse({}, status=200)
+
+
