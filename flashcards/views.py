@@ -97,7 +97,7 @@ def mark_correct(request, pk):
     card = get_object_or_404(Card, pk=pk)
     if marked_as_right.filter(id=card.id).exists():
         correct = True
-    else
+    else:
         correct = False
     card.save()
     
@@ -110,5 +110,4 @@ def mark_correct(request, pk):
     card.marked_as_right=True
     card.save()
     return JsonResponse({}, status=200)
-
-
+    
