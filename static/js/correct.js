@@ -10,7 +10,7 @@ const markCorrect = (event) => {
     .then(res => res.json())
     .then(data => {
       // The data can tell me if the card is wrong or not
-        console.log("DATA: ", data)
+        // console.log("DATA: ", data)
         if (data["correct"]) {
           thumbIcon.classList.replace("fa-solid", "fa-regular")
         } else {
@@ -20,4 +20,4 @@ const markCorrect = (event) => {
 }
 console.log("Hello World")
 
-correct-link.addEventListener('click', markCorrect)
+thumbsDown.addEventListener('click', markCorrect)
