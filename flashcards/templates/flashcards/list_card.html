@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script src={% static "css/js/correct.js" %} defer></script>
+{% endblock %}
 
 {% block content %}
 <header>
@@ -48,7 +52,7 @@
     </svg>
     Delete</a>
     <div class="card-footer-item">
-      <a href="#" class="correct-link">
+      <a href="#" class="thumbs-down">
         <i class="
         {% if correct %} fa-regular 
         {% else %} fa-solid
