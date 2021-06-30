@@ -52,7 +52,7 @@
     </svg>
     Delete</a>
     <div class="card-footer-item">
-      <a href="#" class="thumbs-down">
+      <a href="{% url 'mark_correct' pk=card.pk %}" class="thumbs-down">
         <i class="
         {% if correct %} fa-regular 
         {% else %} fa-solid
