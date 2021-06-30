@@ -18,5 +18,6 @@ const markCorrect = (event) => {
         }
     } )
 }
+console.log("Hello World")
 
 correct-link.addEventListener('click', markCorrect)
