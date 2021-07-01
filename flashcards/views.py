@@ -107,9 +107,11 @@ def delete_deck(request, pk):
 
 def mark_correct(request, pk):
     card = get_object_or_404(Card, pk=pk)
-    card.marked_as_right = True
+    if mark_as_right.filter(id=card.id).exists():
+        print("Ok, thumbs down")
+        card.marked_as_right = True
+    else:
+        card.marked_as_right = False
     card.save()
 
-    return JsonResponse({"card.id": card.id}, status=200)
-
-    
+    return JsonResponse({"card": card}, status=200)
